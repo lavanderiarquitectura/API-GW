@@ -29,9 +29,9 @@ router.post('/api/users', (req, res) => {
   })
 })
 
-<<<<<<< HEAD
+
 module.exports = router
-=======
+
 router.put('/api/users/:userId', (req, res) => {
   api.put(req.path, req.body).then(response => {
     res.send(response.data)
@@ -79,4 +79,3 @@ router.delete('/api/rooms/:roomId', (req, res) => {
 
 
 module.exports = router
->>>>>>> e1e85392fa46a5cfe43924633e8cf8ae75a1de14
