@@ -12,6 +12,6 @@ app.get('/', (req, res) => {
 
 app.use(router)
 
-console.log("Simple API Gateway run on localhost:3000")
+console.log("Simple API Gateway run on localhost:3005")
 
-app.listen(3000);
+app.listen(3005);
