@@ -16,8 +16,6 @@ app.use(router)
 
 console.log("Simple API Gateway run on localhost:3005")
 
-<<<<<<< HEAD
+
 app.listen(3000);
-=======
 app.listen(3005);
->>>>>>> b88d74be42157e333a7c1e9b02b7c153301a941b
