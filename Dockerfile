@@ -1,7 +1,7 @@
 FROM node:7
+RUN mkdir /app
 WORKDIR /app
-COPY package.json /app
+COPY . .
 RUN npm install
-COPY . /app
-CMD node index.js
-EXPOSE 8081
+RUN node index.js
+EXPOSE 3005
