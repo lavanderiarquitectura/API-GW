@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router()
 const apiAdapter = require('./apiAdapter')
 
-const BASE_URL = 'http://localhost:8082'
+config_data = require('../ipconfig.json')
+
+const BASE_URL = 'http://' + config_data.clothingRegistrationServiceIP + ':8082'
 const api = apiAdapter(BASE_URL)
+
 
 router.get('/cloth_register/get', (req, res) => {
   api.get(req.path).then(response => {

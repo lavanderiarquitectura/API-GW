@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router()
 const apiAdapter = require('./apiAdapter')
 
-const BASE_URL = 'http://localhost:8089'
+config_data = require('../ipconfig.json')
+
+const BASE_URL = 'http://' + config_data.clothingRegistrationServiceIP + ':8089'
 const api = apiAdapter(BASE_URL)
 
 router.get('/logistics/items', (req, res) => {

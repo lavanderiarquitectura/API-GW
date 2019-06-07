@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router()
 const apiAdapter = require('./apiAdapter')
 
-const BASE_URL = 'http://localhost:5000'
+config_data = require('../ipconfig.json')
+
+const BASE_URL = 'http://' + config_data.clothingRegistrationServiceIP + ':5000'
 const api = apiAdapter(BASE_URL)
 
 router.get('/devices', (req, res) => {

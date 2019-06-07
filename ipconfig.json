@@ -1,0 +1,7 @@
+{
+     "clothingRegistrationServiceIP": "localhost",
+	 "facturationServiceIP": "localhost",
+	 "logisticServiceIP": "localhost",
+	 "machineServiceIP": "localhost",
+	 "userServiceIP": "localhost" 
+}
