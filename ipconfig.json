@@ -1,7 +1,7 @@
 {
-     "clothingRegistrationServiceIP": "localhost",
+     "clothingRegistrationServiceIP": 18.233.158.69,
 	 "facturationServiceIP": "localhost",
-	 "logisticServiceIP": "localhost",
-	 "machineServiceIP": "localhost",
-	 "userServiceIP": "localhost" 
+	 "logisticServiceIP": 34.201.116.68,
+	 "machineServiceIP": 3.87.14.56,
+	 "userServiceIP": 18.233.158.69 
 }
