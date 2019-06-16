@@ -64,7 +64,7 @@ router.get('/cloth_register/get/:id_prenda', (req, res) => {
   })
 })
 
-router.get('/cloth_fac/get/:id_cuarto', (req, res) => {
+router.get('/cloth_register/get/room/:room_id', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
