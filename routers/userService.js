@@ -24,14 +24,6 @@ router.get('/api/users/:userId', (req, res) => {
   })
 })
 
-router.get('/api/users/recent', (req, res) => {
-  api.get(req.path).then(response => {
-	res.send(response.data)
-  }).catch(function (error) {
-	  res.send(error)
-  })
-})
-
 router.get('/api/users/:userPersonalId/:userPassword', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
