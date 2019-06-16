@@ -15,6 +15,30 @@ router.get('/devices', (req, res) => {
   })
 })
 
+router.get('/lots', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
+router.get('/lots/:id_op/:id_fab/:bool_fin', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
+router.get('/lots/max', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
 router.get('/devices/:deviceId', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)

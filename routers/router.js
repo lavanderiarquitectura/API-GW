@@ -3,7 +3,6 @@ var router = express.Router()
 var userService = require('./userService')
 var clothingRegistrationService = require('./clothingRegistrationService')
 var facturationService = require('./facturationService')
-var logisticService = require('./logisticService')
 var machineService = require('./machineService')
 
 router.use((req, res, next) => {
@@ -13,7 +12,6 @@ router.use((req, res, next) => {
 
 router.use(clothingRegistrationService)
 router.use(facturationService)
-router.use(logisticService)
 router.use(machineService)
 router.use(userService)
 
