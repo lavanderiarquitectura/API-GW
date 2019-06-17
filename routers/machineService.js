@@ -4,7 +4,7 @@ const apiAdapter = require('./apiAdapter')
 
 config_data = require('../ipconfig.json')
 
-const BASE_URL = 'http://' + config_data.clothingRegistrationServiceIP + ':5000'
+const BASE_URL = 'http://' + config_data.machineServiceIP + ':5000'
 const api = apiAdapter(BASE_URL)
 
 router.get('/devices', (req, res) => {
