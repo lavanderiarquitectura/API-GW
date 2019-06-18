@@ -15,6 +15,14 @@ router.get('/devices', (req, res) => {
   })
 })
 
+router.get('/devices/byType/:type', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
 router.get('/lots', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
