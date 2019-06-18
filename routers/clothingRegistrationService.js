@@ -72,6 +72,14 @@ router.get('/cloth_register/get/room/:room_id', (req, res) => {
   })
 })
 
+router.get('/cloth_register/get/operation/:op_id', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
 router.post('/cloth_register/create', (req, res) => {
   api.post(req.path, req.body).then(response => {
 	res.send(response.data)
