@@ -47,6 +47,16 @@ router.get('/authenticate/:userId/:password', function(req, res) {
           });
 });
 
+router.get('/authenticate_operator/:username/:password', function(req, res) {
+	axios.get(userServiceIP+ "/api/operator/" + req.params.username +"/"+ req.params.password).then(response => {
+		console.log(response)
+	res.json(response.data)       
+          })
+          .catch(error => {
+            res.send(error);
+          });
+});
+
 router.use(function(req, res, next) {
 
 	// check header or url parameters or post parameters for token
