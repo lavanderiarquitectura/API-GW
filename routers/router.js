@@ -12,6 +12,22 @@ router.use((req, res, next) => {
     next()
 })
 
+router.post('/api/users', (req, res) => {
+  axios.post(userServiceIP + '/api/users', {		
+            name : req.body.name,
+            last_name : req.body.last_name,
+            personal_id: req.body.personal_id,
+            password: req.body.password,
+            room_id: req.body.room_id
+        }).then(function (response) {
+			console.log(response)
+    res.send(response.data);
+  })
+  .catch(function (error) {
+    res.send(error);
+  });
+})
+
 
 router.get('/authenticate/:userId/:password', function(req, res) {
 	axios.get(userServiceIP+ "/api/users/" + req.params.userId +"/"+ req.params.password).then(response => {

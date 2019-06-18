@@ -32,14 +32,6 @@ router.get('/api/users/:userPersonalId/:userPassword', (req, res) => {
   })
 })
 
-router.post('/api/users', (req, res) => {
-  api.post(req.path, req.body).then(response => {
-	res.send(response.data)
-  }).catch(function (error) {
-      res.send(error)
-  })
-})
-
 router.put('/api/users/:userId', (req, res) => {
   api.put(req.path, req.body).then(response => {
 	res.send(response.data)
