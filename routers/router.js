@@ -20,11 +20,19 @@ router.post('/api/users', (req, res) => {
             password: req.body.password,
             room_id: req.body.room_id
         }).then(function (response) {
-			console.log(response)
-    res.send(response.data);
+	if(response.data.id != null){
+		res.status(201).send({ 
+			success: true
+		});
+	}
+	else{
+		res.status(400).send({ 
+			success: false
+		});
+	}
   })
   .catch(function (error) {
-    res.send(error);
+    res.status(500).send(error);
   });
 })
 
