@@ -47,6 +47,14 @@ router.get('/lots/max', (req, res) => {
   })
 })
 
+router.get('/lots/byTypeOperation/:typeOperation', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
 router.get('/devices/:deviceId', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
