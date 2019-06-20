@@ -4,6 +4,7 @@ var userService = require('./userService')
 var clothingRegistrationService = require('./clothingRegistrationService')
 var facturationService = require('./facturationService')
 var machineService = require('./machineService')
+var ldapService = require('./ldapService')
 const axios = require('axios');
 const userServiceIP = 'http://' + config_data.userServiceIP + ':8085'
 const ldapServiceIP = 'http://' + config_data.ldapServiceIP + ':3001'
@@ -83,5 +84,6 @@ router.use(clothingRegistrationService)
 router.use(facturationService)
 router.use(machineService)
 router.use(userService)
+router.use(ldapService)
 
 module.exports = router
