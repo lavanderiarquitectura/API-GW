@@ -15,7 +15,7 @@ router.use((req, res, next) => {
 })
 
 router.post('/api/users', (req, res) => {
-  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', { 'headers': { 'Content-Type': text/plain } }, {		
+  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', { 'headers': { 'Content-Type': 'text/plain' } }, {		
             name : req.body.name,
             last_name : req.body.last_name,
             personalId: req.body.personal_id,
