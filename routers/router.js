@@ -41,7 +41,7 @@ router.post('/api/users', (req, res) => {
 
 
 router.get('/authenticate/:userId/:password', function(req, res) {
-	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/user/" + req.params.userId +"/"+ req.params.password, { 'headers': { 'Content-Type': text/plain } }).then(response => {
+	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/user/" + req.params.userId +"/"+ req.params.password, { 'headers': { 'Content-Type': 'text/plain' } }).then(response => {
 		console.log(response)
 	res.json(response.data)       
           })
@@ -51,7 +51,7 @@ router.get('/authenticate/:userId/:password', function(req, res) {
 });
 
 router.get('/authenticate_operator/:username/:password', function(req, res) {
-	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/operator/" + req.params.username +"/"+ req.params.password, { 'headers': { 'Content-Type': text/plain } }).then(response => {
+	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/operator/" + req.params.username +"/"+ req.params.password, { 'headers': { 'Content-Type': 'text/plain' } }).then(response => {
 		console.log(response)
 	res.json(response.data)       
           })
