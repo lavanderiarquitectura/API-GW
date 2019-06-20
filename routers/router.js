@@ -66,7 +66,7 @@ router.use(function(req, res, next) {
 	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 	console.log(token)
 	console.log(ldapServiceIP+ "/ldap-auth/api/auth/token/" + token)
-	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/token/" + token).then(response => {
+	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/token/" + token, { 'headers': { 'Content-Type': 'text/plain' } }).then(response => {
 		console.log(response)
 		user = response;
 		next();
