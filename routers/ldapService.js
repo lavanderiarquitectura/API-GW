@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router()
 const apiAdapter = require('./apiAdapter')
 
+
 config_data = require('../ipconfig.json')
 
-const BASE_URL = 'http://' + config_data.facturationServiceIP + ':4000'
+const BASE_URL = 'http://' + config_data.ldapServiceIP + ':3001'
 const api = apiAdapter(BASE_URL)
 
-router.get('/fac_prendas', (req, res) => {
+router.get('/ldap-auth/api/auth/user/:usr/:psw', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -15,7 +16,15 @@ router.get('/fac_prendas', (req, res) => {
   })
 })
 
-router.get('/getglobales', (req, res) => {
+router.get('/ldap-auth/api/auth/operator/:usr/:psw', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+	  res.send(error)
+  })
+})
+
+router.get('/ldap-auth/api/auth/token/:tkn', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -23,7 +32,7 @@ router.get('/getglobales', (req, res) => {
   })
 })
 
-router.get('/getglobales/:idCuarto', (req, res) => {
+router.get('/ldap-auth/api/auth/getuser/:user', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -31,24 +40,8 @@ router.get('/getglobales/:idCuarto', (req, res) => {
   })
 })
 
-router.get('/getlocales/:idCuarto', (req, res) => {
-  api.get(req.path).then(response => {
-	res.send(response.data)
-  }).catch(function (error) {
-      res.send(error)
-  })
-})
-
-router.patch('/updatestateglobales/:idCuarto', (req, res) => {
-  api.patch(req.path, req.body).then(response => {
-	res.send(response.data)
-  }).catch(function (error) {
-      res.send(error)
-  })
-})
-
-router.post('/createlocales/:idCuarto/:cobro/:date', (req, res) => {
-  api.post(req.path, req.body).then(response => {
+router.post('/ldap-auth/api/auth/register', (req, res) => {
+  api.put(req.path, req.body).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
       res.send(error)

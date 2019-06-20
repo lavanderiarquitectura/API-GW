@@ -2,5 +2,6 @@
      "clothingRegistrationServiceIP": "localhost",
 	 "facturationServiceIP": "localhost",
 	 "machineServiceIP": "localhost",
-	 "userServiceIP": "localhost"
+	 "userServiceIP": "localhost",
+	 "ldapServiceIP": "localhost"
 }

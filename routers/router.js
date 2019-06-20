@@ -5,7 +5,8 @@ var clothingRegistrationService = require('./clothingRegistrationService')
 var facturationService = require('./facturationService')
 var machineService = require('./machineService')
 const axios = require('axios');
-const userServiceIP = 'http://' + config_data.clothingRegistrationServiceIP + ':8085'
+const userServiceIP = 'http://' + config_data.userServiceIP + ':8085'
+const ldapServiceIP = 'http://' + config_data.ldapServiceIP + ':3001'
 
 router.use((req, res, next) => {
     console.log("Called: ", req.path)
@@ -13,12 +14,13 @@ router.use((req, res, next) => {
 })
 
 router.post('/api/users', (req, res) => {
-  axios.post(userServiceIP + '/api/users', {		
+  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', { 'headers': { 'Content-Type': text/plain } }, {		
             name : req.body.name,
             last_name : req.body.last_name,
-            personal_id: req.body.personal_id,
+            personalId: req.body.personal_id,
             password: req.body.password,
-            room_id: req.body.room_id
+            room_id: req.body.room_id,
+			username: req.body.personal_id
         }).then(function (response) {
 	if(response.data.id != null){
 		res.status(201).send({ 
@@ -38,7 +40,7 @@ router.post('/api/users', (req, res) => {
 
 
 router.get('/authenticate/:userId/:password', function(req, res) {
-	axios.get(userServiceIP+ "/api/users/" + req.params.userId +"/"+ req.params.password).then(response => {
+	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/user/" + req.params.userId +"/"+ req.params.password, { 'headers': { 'Content-Type': text/plain } }).then(response => {
 		console.log(response)
 	res.json(response.data)       
           })
@@ -48,7 +50,7 @@ router.get('/authenticate/:userId/:password', function(req, res) {
 });
 
 router.get('/authenticate_operator/:username/:password', function(req, res) {
-	axios.get(userServiceIP+ "/api/operator/" + req.params.username +"/"+ req.params.password).then(response => {
+	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/operator/" + req.params.username +"/"+ req.params.password, { 'headers': { 'Content-Type': text/plain } }).then(response => {
 		console.log(response)
 	res.json(response.data)       
           })
@@ -62,8 +64,8 @@ router.use(function(req, res, next) {
 	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 	console.log(token)
-	console.log(userServiceIP+ "/api/token/" + token)
-	axios.get(userServiceIP+ "/api/token/" + token).then(response => {
+	console.log(ldapServiceIP+ "/ldap-auth/api/auth/token/" + token)
+	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/token/" + token).then(response => {
 		console.log(response)
 		user = response;
 		next();
