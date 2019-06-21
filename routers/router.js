@@ -15,14 +15,18 @@ router.use((req, res, next) => {
 })
 
 router.post('/api/users', (req, res) => {
-  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', { 'headers': { 'Content-Type': 'text/plain' } }, {		
+	var params = {		
             name : req.body.name,
             last_name : req.body.last_name,
             personalId: req.body.personal_id,
             password: req.body.password,
             room_id: req.body.room_id,
 			username: req.body.personal_id
-        }).then(function (response) {
+        }
+	var header = {
+		'Content-Type': 'text/plain'
+	}
+  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', {params, headers} ).then(function (response) {
 	if(response.data.id != null){
 		res.status(201).send({ 
 			success: true
