@@ -34,7 +34,7 @@ router.post('/api/users', (req, res) => {
             room_id: req.body.room_id,
 			username: req.body.personal_id
 	  }
-	  }, (error, res, body) => {
+	  }, (error, response, body) => {
 	  if (error) {
     res.status(500).send(error);
 	  }else{
