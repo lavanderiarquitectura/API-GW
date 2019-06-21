@@ -26,7 +26,7 @@ router.post('/api/users', (req, res) => {
 	var headers = {
 		'Content-Type': 'text/plain'
 	}
-  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', {params, headers} ).then(function (response) {
+  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', params, headers ).then(function (response) {
 	if(response.data.id != null){
 		res.status(201).send({ 
 			success: true
