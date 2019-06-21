@@ -38,17 +38,11 @@ router.post('/api/users', (req, res) => {
 	  if (error) {
     res.status(500).send(error);
 	  }else{
-	  if(response.data.id != null){
-
+		console.log('Response: ' response)
 		res.status(201).send({ 
 			success: true
 		});
-	}
-	else{
-		res.status(400).send({ 
-			success: false
-		});
-	}
+	
 	  }
 	  }
 	)
