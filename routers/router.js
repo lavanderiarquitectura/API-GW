@@ -16,18 +16,29 @@ router.use((req, res, next) => {
 
 router.post('/api/users', (req, res) => {
 	var params = {		
-            name : req.body.name,
+
+        }
+	var headers = {
+		'Content-Type': 'text/plain'
+	}
+	
+		
+	const request = require('request')
+	  request.post(ldapServiceIP + '/ldap-auth/api/auth/register', {
+	  headers: { 'Content-type': 'text/plain' },
+	  json: {	 
+	        name : req.body.name,
             last_name : req.body.last_name,
             personalId: req.body.personal_id,
             password: req.body.password,
             room_id: req.body.room_id,
 			username: req.body.personal_id
-        }
-	var header = {
-		'Content-Type': 'text/plain'
-	}
-  axios.post(ldapServiceIP + '/ldap-auth/api/auth/register', {params, headers} ).then(function (response) {
-	if(response.data.id != null){
+	  }
+	  }, (error, res, body) => {
+	  if (error) {
+    res.status(500).send(error);
+	  }else{
+	  if(response.data.id != null){
 		res.status(201).send({ 
 			success: true
 		});
@@ -37,10 +48,9 @@ router.post('/api/users', (req, res) => {
 			success: false
 		});
 	}
-  })
-  .catch(function (error) {
-    res.status(500).send(error);
-  });
+	  }
+	  }
+	)
 })
 
 
