@@ -38,7 +38,7 @@ router.post('/api/users', (req, res) => {
 	  if (error) {
     res.status(500).send(error);
 	  }else{
-		console.log('Response: ' response)
+		console.log('Response: ' + response)
 		res.status(201).send({ 
 			success: true
 		});
