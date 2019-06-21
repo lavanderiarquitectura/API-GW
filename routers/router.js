@@ -39,6 +39,7 @@ router.post('/api/users', (req, res) => {
     res.status(500).send(error);
 	  }else{
 	  if(response.data.id != null){
+
 		res.status(201).send({ 
 			success: true
 		});
