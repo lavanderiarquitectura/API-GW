@@ -3,5 +3,5 @@
 	 "facturationServiceIP": "localhost",
 	 "machineServiceIP": "localhost",
 	 "userServiceIP": "localhost",
-	 "ldapServiceIP": "http://3.92.191.6"
+	 "ldapServiceIP": "3.92.191.6"
 }
