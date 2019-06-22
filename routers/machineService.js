@@ -23,6 +23,14 @@ router.get('/devices/byType/:type', (req, res) => {
   })
 })
 
+router.get('/devices/byTypeAndState/:type/:state', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
 router.get('/lots', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
@@ -47,7 +55,15 @@ router.get('/lots/max', (req, res) => {
   })
 })
 
-router.get('/lots/byTypeOperation/:typeOperation', (req, res) => {
+router.get('/lots/byOperation/:typeOperation', (req, res) => {
+  api.get(req.path).then(response => {
+	res.send(response.data)
+  }).catch(function (error) {
+      res.send(error)
+  })
+})
+
+router.get('/lots/byOperationAndState/:type_operation/:state', (req, res) => {
   api.get(req.path).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -71,7 +87,7 @@ router.post('/devices', (req, res) => {
   })
 })
 
-router.put('/devices', (req, res) => {
+router.put('/devices/:deviceId', (req, res) => {
   api.put(req.path, req.body).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -79,7 +95,7 @@ router.put('/devices', (req, res) => {
   })
 })
 
-router.delete('/devices', (req, res) => {
+router.delete('/devices/:deviceId', (req, res) => {
   api.delete(req.path, req.body).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -111,7 +127,7 @@ router.post('/lots', (req, res) => {
   })
 })
 
-router.put('/lots', (req, res) => {
+router.put('/lots/:lotId', (req, res) => {
   api.put(req.path, req.body).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
@@ -119,7 +135,7 @@ router.put('/lots', (req, res) => {
   })
 })
 
-router.delete('/lots', (req, res) => {
+router.delete('/lots/:lotId', (req, res) => {
   api.delete(req.path, req.body).then(response => {
 	res.send(response.data)
   }).catch(function (error) {
