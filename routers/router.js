@@ -10,8 +10,6 @@ const userServiceIP = 'http://' + config_data.userServiceIP + ':8085'
 const ldapServiceIP = 'http://' + config_data.ldapServiceIP + ':3001'
 var jwt    = require('jsonwebtoken');
 var crypto = require('crypto');
-var myCipher = crypto.createCipher('aes-128-cbc', 'Laundry');
-var myDecipher = crypto.createDecipher('aes-128-cbc', 'Laundry');
 
 router.use((req, res, next) => {
     console.log("Called: ", req.path)
@@ -55,13 +53,27 @@ router.post('/api/users', (req, res) => {
 
 router.get('/authenticate/:userId/:password', function(req, res) {
 	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/user/" + req.params.userId +"/"+ req.params.password, { 'headers': { 'Content-Type': 'text/plain' } }).then(response => {
-		console.log(response)
+var myCipher = crypto.createCipher('aes-128-cbc', 'Laundry');
+
+var myDecipher = crypto.createDecipher('aes-128-cbc', 'Laundry');
 		const payload = { //TODO
-			userName: response.data.userName,
-			userId: response.data.id,
+			userId: req.params.userId,
 			type: "user"	  };
 		var token = jwt.sign(payload, ('superSecret'), {expiresIn: 60 * 60 * 24});
-		var cipheredToken = myCipher.update(token, 'utf8', 'hex')
+		var cipheredToken = myCipher.update(token, 'utf8', 'hex')+ myCipher.final('hex')
+console.log(payload)
+		console.log("Unecrypted token " + token + "\n\n" + cipheredToken)
+var undec = myDecipher.update(cipheredToken, 'hex', 'utf8')+ myDecipher.final('utf8')
+	jwt.verify(undec, ('superSecret'), function(err, decoded) {       if (err) {
+        console.log('Failed to authenticate token.')
+		} else {
+        // if everything is good, save to request for use in other routes
+		console.log(decoded.type)
+		console.log(Date.now())
+		console.log(Date.now() >= decoded.exp * 1000)
+        console.log(decoded);
+      }
+    });		
 		res.json(cipheredToken)
 	//res.json(response.data)       
           })
@@ -72,14 +84,14 @@ router.get('/authenticate/:userId/:password', function(req, res) {
 
 router.get('/authenticate_operator/:username/:password', function(req, res) {
 	axios.get(ldapServiceIP+ "/ldap-auth/api/auth/operator/" + req.params.username +"/"+ req.params.password, { 'headers': { 'Content-Type': 'text/plain' } }).then(response => {
-		console.log(response)
+var myCipher = crypto.createCipher('aes-128-cbc', 'Laundry');
+
 		const payload = { //TODO
-			userName: response.data.userName,
-			userId: response.data.id,
+			userId: req.params.username,
 			type: "admin"	  };
 		var token = jwt.sign(payload, ('superSecret'), {expiresIn: 60 * 60 * 24});
 		var cipheredToken = myCipher.update(token, 'utf8', 'hex')
-		res.json(cipheredToken)
+		res.json(cipheredToken + "\n")
 	//res.json(response.data)        
           })
           .catch(error => {
@@ -88,12 +100,12 @@ router.get('/authenticate_operator/:username/:password', function(req, res) {
 });
 
 router.use(function(req, res, next) {
+	var myDecipher = crypto.createDecipher('aes-128-cbc', 'Laundry');
 
 	// check header or url parameters or post parameters for token
 	var cipheredToken = req.body.token || req.param('token') || req.headers['x-access-token'];
 	var token = myDecipher.update(cipheredToken, 'hex', 'utf8')
 	console.log(token)
-	console.log(ldapServiceIP+ "/ldap-auth/api/auth/token/" + token)
 	jwt.verify(token, ('superSecret'), function(err, decoded) {       if (err) {
         console.log('Failed to authenticate token ' + token)
 		return res.status(403).send({ 
@@ -108,7 +120,7 @@ router.use(function(req, res, next) {
 				});
 			}
 			else{
-				console.log(response)
+				console.log(decoded)
 				next();
 			}
         // if everything is good, save to request for use in other routes
