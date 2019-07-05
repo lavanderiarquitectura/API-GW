@@ -61,7 +61,7 @@ var myDecipher = crypto.createDecipher('aes-128-cbc', 'Laundry');
 			type: "user"	  };
 		var token = jwt.sign(payload, ('superSecret'), {expiresIn: 60 * 60 * 24});
 		var cipheredToken = myCipher.update(token, 'utf8', 'hex')+ myCipher.final('hex')
-console.log(payload)
+		console.log(payload)
 		console.log("Unecrypted token " + token + "\n\n" + cipheredToken)
 var undec = myDecipher.update(cipheredToken, 'hex', 'utf8')+ myDecipher.final('utf8')
 	jwt.verify(undec, ('superSecret'), function(err, decoded) {       if (err) {
@@ -74,7 +74,9 @@ var undec = myDecipher.update(cipheredToken, 'hex', 'utf8')+ myDecipher.final('u
         console.log(decoded);
       }
     });		
-		res.json(cipheredToken)
+		var jsonResponse = {}
+		jsonResponse['login'] = cipheredToken
+		res.json(jsonResponse)
 	//res.json(response.data)       
           })
           .catch(error => {
@@ -90,8 +92,10 @@ var myCipher = crypto.createCipher('aes-128-cbc', 'Laundry');
 			userId: req.params.username,
 			type: "admin"	  };
 		var token = jwt.sign(payload, ('superSecret'), {expiresIn: 60 * 60 * 24});
-		var cipheredToken = myCipher.update(token, 'utf8', 'hex')
-		res.json(cipheredToken + "\n")
+		var cipheredToken = myCipher.update(token, 'utf8', 'hex')+ myCipher.final('hex')
+		var jsonResponse = {}
+		jsonResponse['login'] = cipheredToken
+		res.json(jsonResponse)
 	//res.json(response.data)        
           })
           .catch(error => {
@@ -104,7 +108,8 @@ router.use(function(req, res, next) {
 
 	// check header or url parameters or post parameters for token
 	var cipheredToken = req.body.token || req.param('token') || req.headers['x-access-token'];
-	var token = myDecipher.update(cipheredToken, 'hex', 'utf8')
+	console.log('Ciphered Token ' + cipheredToken )
+	var token = myDecipher.update(cipheredToken, 'hex', 'utf8')+ myDecipher.final('utf8')
 	console.log(token)
 	jwt.verify(token, ('superSecret'), function(err, decoded) {       if (err) {
         console.log('Failed to authenticate token ' + token)
