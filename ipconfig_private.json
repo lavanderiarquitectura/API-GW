@@ -2,6 +2,5 @@
      "clothingRegistrationServiceIP": "172.31.84.51",
 	 "facturationServiceIP": "172.31.89.164",
 	 "machineServiceIP": "172.31.89.164",
-	 "userServiceIP": "",
 	 "ldapServiceIP": "172.31.89.73"
 }

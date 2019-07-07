@@ -4,7 +4,7 @@ const apiAdapter = require('./apiAdapter')
 
 config_data = require('../ipconfig.json')
 
-const BASE_URL = 'http://' + config_data.facturationServiceIP + ':4000'
+const BASE_URL = 'http://' + config_data.facturationServiceIP + ':3000'
 const api = apiAdapter(BASE_URL)
 
 router.get('/getfacturaglobal/:idCuarto', (req, res) => {
