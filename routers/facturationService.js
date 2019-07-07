@@ -9,25 +9,43 @@ const api = apiAdapter(BASE_URL)
 
 router.get('/getfacturaglobal/:idCuarto', (req, res) => {
   api.get(req.path).then(response => {
-        res.send(response.data)
+    console.log("response.data");
+    console.log(response.data);
+
+    res.status(200).send(response.data)
   }).catch(function (error) {
-      res.send(error)
+    console.log("error");
+    console.log(error);
+    
+    res.send(error)
   })
 })
 
 router.patch('/payfactura/:idCuarto', (req, res) => {
   api.patch(req.path).then(response => {
-        res.send(response.data)
+    console.log("response.data");
+    console.log(response.data);
+
+    res.send(response.data)
   }).catch(function (error) {
-      res.send(error)
+    console.log("error");
+    console.log(error);
+
+    res.send(error)
   })
 })
 
 router.post('/postfacprendas', (req, res) => {
   api.post(req.path, req.body).then(response => {
-        res.send(response.data)
+    console.log("response.data");
+    console.log(response.data);
+
+    res.send(response.data)
   }).catch(function (error) {
-      res.send(error)
+    console.log("error");
+    console.log(error);
+
+    res.send(error)
   })
 })
 
