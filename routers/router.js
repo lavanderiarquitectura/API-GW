@@ -7,7 +7,7 @@ var machineService = require('./machineService')
 var ldapService = require('./ldapService')
 const axios = require('axios');
 const userServiceIP = 'http://' + config_data.userServiceIP + ':8085'
-const ldapServiceIP = 'http://' + config_data.ldapServiceIP + ':3001'
+const ldapServiceIP = 'http://' + config_data.ldapServiceIP + ':3030'
 var jwt    = require('jsonwebtoken');
 var crypto = require('crypto');
 
