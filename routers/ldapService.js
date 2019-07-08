@@ -5,7 +5,7 @@ const apiAdapter = require('./apiAdapter')
 
 config_data = require('../ipconfig.json')
 
-const BASE_URL = 'http://' + config_data.ldapServiceIP + ':3001'
+const BASE_URL = 'http://' + config_data.ldapServiceIP + ':3030'
 const api = apiAdapter(BASE_URL)
 
 router.get('/ldap-auth/api/auth/getuser/:user', (req, res) => {
