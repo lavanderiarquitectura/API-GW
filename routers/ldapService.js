@@ -10,8 +10,14 @@ const api = apiAdapter(BASE_URL)
 
 router.get('/ldap-auth/api/auth/getuser/:user', (req, res) => {
   api.get(req.path).then(response => {
-	res.send(response.data)
+    console.log("Response");
+    console.log(response.data);
+
+	  res.send(response.data)
   }).catch(function (error) {
+    console.log("Error");
+    console.log(error);
+
       res.send(error)
   })
 })
