@@ -1,6 +1,6 @@
 {
      "clothingRegistrationServiceIP": "3.92.2.102",
-	 "facturationServiceIP": "100.26.191.111",
+	 "facturationServiceIP": "facturacion.lavanderia.local",
 	 "machineServiceIP": "100.26.191.111",
 	 "ldapServiceIP": "54.237.143.120"
 }

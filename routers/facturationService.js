@@ -49,4 +49,18 @@ router.post('/postfacprendas', (req, res) => {
   })
 })
 
+router.get('/gethabitacionescostfree', (req, res) => {
+  api.get(req.path).then(response => {
+    console.log("response.data");
+    console.log(response.data);
+
+    res.status(200).send(response.data)
+  }).catch(function (error) {
+    console.log("error");
+    console.log(error);
+    
+    res.send(error)
+  })
+})
+
 module.exports = router
